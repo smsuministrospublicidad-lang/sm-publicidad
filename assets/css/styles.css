@@ -200,7 +200,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
   background: rgba(226, 6, 19, .35); z-index: -1;
 }
 .lead { font-size: clamp(17px, 2vw, 21px); line-height: 1.55; color: var(--text-dim); max-width: 60ch; margin: 28px 0 0; }
-.lead-hl { font-weight: 800; color: inherit; }
+.lead-hl { font-weight: 800; color: #fff; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
 
 .stats { display: flex; flex-wrap: wrap; gap: 36px; margin-top: 56px; padding-top: 36px; border-top: 1px solid rgba(255, 255, 255, .1); }
