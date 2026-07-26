@@ -223,6 +223,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
    SECTIONS (shared)
    ========================================================================== */
 .section { padding: 100px 0; }
+#ia.section { padding: 64px 0; }
 .section-light { background: var(--light-bg); color: var(--light-text); }
 .section-dark2 { background: var(--bg-3); border-top: 1px solid rgba(255, 255, 255, .06); }
 
@@ -238,11 +239,15 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
 .section-head { max-width: 640px; }
 .section-head-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; }
 .section-note { color: #8a8a8a; font-size: 14px; max-width: 32ch; }
+.section-callout {
+  background: var(--accent); color: #fff; font-size: 15px; font-weight: 600; line-height: 1.45;
+  margin: 16px 0 0; padding: 14px 18px; border-radius: 12px; max-width: 52ch;
+}
 
 .grid-2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center; }
 
 /* ---------- IA panel ---------- */
-.check-list { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+.check-list { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
 .check-list li { display: flex; gap: 14px; align-items: flex-start; }
 .check {
   flex: 0 0 auto; width: 26px; height: 26px; border-radius: 8px;
@@ -290,7 +295,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
 
 .wa-chat {
   position: relative; z-index: 1;
-  min-height: 620px; max-height: 620px; overflow: hidden;
+  min-height: 490px; max-height: 490px; overflow: hidden;
   display: flex; flex-direction: column; gap: 8px;
   padding: 16px;
 }
