@@ -67,61 +67,77 @@
     typeTick();
   }
 
-  // ---------- Live operations feed ----------
-  const opsFeed = document.getElementById('opsFeed');
-  const opsCounterEl = document.getElementById('opsCounter');
-  if (opsFeed && opsCounterEl) {
-    const requests = [
-      { cat: 'Branding', icon: '◎', text: 'Nuevo logo para restaurante' },
-      { cat: 'Impresión', icon: '▤', text: 'Cotización de tarjetas' },
-      { cat: 'Marketing', icon: '◈', text: 'Campaña para redes sociales' },
-      { cat: 'Fotografía', icon: '◐', text: 'Sesión de fotos de producto' },
-      { cat: 'Web & IA', icon: '{ }', text: 'Chatbot para atención 24/7' },
-      { cat: 'Souvenirs', icon: '★', text: 'Merch para lanzamiento' },
-      { cat: 'Impresión', icon: '▤', text: 'Vallas para punto de venta' },
-      { cat: 'Marketing', icon: '◈', text: 'Anuncios en Google Ads' },
+  // ---------- WhatsApp AI conversation ----------
+  const waChat = document.getElementById('waChat');
+  const waStatus = document.getElementById('waStatus');
+  const MAX_BUBBLES = 5;
+  if (waChat) {
+    const script = [
+      { from: 'in', text: 'Hola! Quiero cotizar un logo para mi negocio 🙂' },
+      { from: 'out', text: '¡Hola! Con gusto te ayudo 😊 ¿Qué tipo de negocio tienes?' },
+      { from: 'in', text: 'Una cafetería ☕' },
+      { from: 'out', text: 'Perfecto, te armo una propuesta hoy mismo. ¿Tu nombre y correo?' },
+      { from: 'in', text: 'Andrés, andres@correo.com' },
+      { from: 'out', text: 'Listo Andrés ✅ En menos de 24h te enviamos tu propuesta.' },
     ];
-    const MAX_CARDS = 3;
-    let reqIndex = 0;
-    let counter = 128;
-    opsCounterEl.textContent = counter;
 
-    function addCard() {
-      const req = requests[reqIndex % requests.length];
-      reqIndex += 1;
-
-      const card = document.createElement('div');
-      card.className = 'ops-card';
-      card.innerHTML =
-        '<div class="ops-card-icon">' + req.icon + '</div>' +
-        '<div class="ops-card-body">' +
-          '<div class="ops-card-cat">' + req.cat + '</div>' +
-          '<div class="ops-card-text">' + req.text + '</div>' +
-        '</div>' +
-        '<div class="ops-card-status">Procesando…</div>';
-      opsFeed.appendChild(card);
-
-      requestAnimationFrame(() => card.classList.add('is-visible'));
-
-      if (opsFeed.children.length > MAX_CARDS) {
-        const oldest = opsFeed.children[0];
-        oldest.classList.add('is-leaving');
-        setTimeout(() => oldest.remove(), 450);
-      }
-
-      setTimeout(() => {
-        const status = card.querySelector('.ops-card-status');
-        if (status) {
-          status.textContent = '✓ Resuelto por IA';
-          status.classList.add('is-done');
-        }
-        counter += 1;
-        opsCounterEl.textContent = counter;
-      }, 1000);
+    function nowTime() {
+      const d = new Date();
+      return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
     }
 
-    addCard();
-    setInterval(addCard, 2200);
+    function trimBubbles() {
+      while (waChat.children.length > MAX_BUBBLES) {
+        waChat.removeChild(waChat.children[0]);
+      }
+    }
+
+    function addBubble(msg) {
+      const bubble = document.createElement('div');
+      bubble.className = 'wa-bubble ' + (msg.from === 'in' ? 'wa-bubble-in' : 'wa-bubble-out');
+      bubble.innerHTML = msg.text + '<span class="wa-bubble-time">' + nowTime() + (msg.from === 'out' ? ' ✓✓' : '') + '</span>';
+      waChat.appendChild(bubble);
+      trimBubbles();
+      requestAnimationFrame(() => bubble.classList.add('is-visible'));
+    }
+
+    function addTyping() {
+      const typing = document.createElement('div');
+      typing.className = 'wa-typing';
+      typing.innerHTML = '<span></span><span></span><span></span>';
+      waChat.appendChild(typing);
+      trimBubbles();
+      requestAnimationFrame(() => typing.classList.add('is-visible'));
+      return typing;
+    }
+
+    let i = 0;
+    function playStep() {
+      if (i >= script.length) {
+        setTimeout(() => {
+          waChat.innerHTML = '';
+          i = 0;
+          setTimeout(playStep, 500);
+        }, 3200);
+        return;
+      }
+      const msg = script[i];
+      i += 1;
+      if (msg.from === 'out') {
+        if (waStatus) waStatus.textContent = 'escribiendo…';
+        const typing = addTyping();
+        setTimeout(() => {
+          typing.remove();
+          addBubble(msg);
+          if (waStatus) waStatus.textContent = 'en línea';
+          setTimeout(playStep, 1100);
+        }, 1200);
+      } else {
+        addBubble(msg);
+        setTimeout(playStep, 1100);
+      }
+    }
+    playStep();
   }
 
   // ---------- Hero slider ----------
