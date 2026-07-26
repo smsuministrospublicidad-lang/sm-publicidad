@@ -50,32 +50,47 @@ module.exports = async (req, res) => {
 
   const fromAddress = `"SM Publicidad" <${process.env.ZOHO_USER}>`;
 
+  const brandHeader = `
+    <div style="background:#0E0E0E;padding:20px 28px;border-radius:12px 12px 0 0">
+      <span style="font-family:Arial,sans-serif;font-weight:700;font-size:18px;color:#fff">SM <span style="color:#E20613">Publicidad</span></span>
+    </div>`;
+  const wrap = (bodyHtml) => `
+    <div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;border:1px solid #eee;border-radius:12px;overflow:hidden">
+      ${brandHeader}
+      <div style="padding:28px;color:#222;font-size:15px;line-height:1.6">${bodyHtml}</div>
+      <div style="padding:16px 28px;background:#fafafa;color:#999;font-size:12px;border-top:1px solid #eee">
+        SM Publicidad · Bogotá, Colombia · <a href="https://www.smpublicidad.com.co" style="color:#E20613">smpublicidad.com.co</a>
+      </div>
+    </div>`;
+
   try {
     await transporter.sendMail({
       from: fromAddress,
       to: process.env.ZOHO_USER,
       replyTo: correo,
-      subject: `Nueva solicitud: ${safeServicio} — ${safeNombre}`,
+      subject: `Nuevo contacto web — ${safeNombre} (${safeServicio})`,
       text: `Nombre: ${safeNombre}\nCorreo: ${correo}\nServicio: ${safeServicio}\n\nMensaje:\n${safeMensaje || '(sin mensaje)'}`,
-      html: `
-        <p><strong>Nombre:</strong> ${escapeHtml(safeNombre)}</p>
-        <p><strong>Correo:</strong> ${escapeHtml(correo)}</p>
-        <p><strong>Servicio:</strong> ${escapeHtml(safeServicio)}</p>
-        <p><strong>Mensaje:</strong><br>${escapeHtml(safeMensaje || '(sin mensaje)').replace(/\n/g, '<br>')}</p>
-      `,
+      html: wrap(`
+        <h2 style="margin:0 0 16px;font-size:18px;color:#111">Nueva solicitud de cotización</h2>
+        <p style="margin:0 0 10px"><strong>Nombre:</strong> ${escapeHtml(safeNombre)}</p>
+        <p style="margin:0 0 10px"><strong>Correo:</strong> ${escapeHtml(correo)}</p>
+        <p style="margin:0 0 10px"><strong>Servicio:</strong> ${escapeHtml(safeServicio)}</p>
+        <p style="margin:16px 0 6px"><strong>Mensaje:</strong></p>
+        <p style="margin:0;white-space:pre-wrap">${escapeHtml(safeMensaje || '(sin mensaje)')}</p>
+      `),
     });
 
     await transporter.sendMail({
       from: fromAddress,
       to: correo,
-      subject: 'Hemos recibido tu mensaje — SM Publicidad',
+      subject: `Recibimos tu mensaje, ${safeNombre} — SM Publicidad`,
       text: `Hola ${safeNombre},\n\nGracias por escribirnos. Ya recibimos tu solicitud sobre "${safeServicio}" y te contactaremos en menos de 24 horas con una propuesta.\n\nSi necesitas algo urgente, escríbenos por WhatsApp al +57 300 555 1234.\n\n— Equipo SM Publicidad\nhttps://www.smpublicidad.com.co`,
-      html: `
-        <p>Hola ${escapeHtml(safeNombre)},</p>
-        <p>Gracias por escribirnos. Ya recibimos tu solicitud sobre <strong>${escapeHtml(safeServicio)}</strong> y te contactaremos en menos de 24 horas con una propuesta.</p>
-        <p>Si necesitas algo urgente, escríbenos por WhatsApp al <strong>+57 300 555 1234</strong>.</p>
-        <p>— Equipo SM Publicidad<br><a href="https://www.smpublicidad.com.co">www.smpublicidad.com.co</a></p>
-      `,
+      html: wrap(`
+        <p style="margin:0 0 14px">Hola ${escapeHtml(safeNombre)},</p>
+        <p style="margin:0 0 14px">Gracias por escribirnos. Ya recibimos tu solicitud sobre <strong>${escapeHtml(safeServicio)}</strong> y te contactaremos en <strong>menos de 24 horas</strong> con una propuesta.</p>
+        <p style="margin:0 0 14px">Si necesitas algo urgente, escríbenos por WhatsApp al <strong>+57 300 555 1234</strong>.</p>
+        <p style="margin:0;color:#555">— Equipo SM Publicidad</p>
+      `),
     });
 
     res.status(200).json({ ok: true });
