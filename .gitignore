@@ -7,3 +7,5 @@ Thumbs.db
 _verify_tmp*/
 docs/
 _original/
+
+.vercel

@@ -55,6 +55,33 @@
     track.append(buildGroup(), buildGroup());
   }
 
+  // ---------- Portfolio tabs ----------
+  const portfolioTabs = document.querySelector('.portfolio-tabs');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  const portfolioEmpty = document.querySelector('.portfolio-empty');
+  if (portfolioTabs) {
+    portfolioTabs.addEventListener('click', (e) => {
+      const tab = e.target.closest('.portfolio-tab');
+      if (!tab) return;
+
+      portfolioTabs.querySelectorAll('.portfolio-tab').forEach((t) => {
+        t.classList.remove('is-active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('is-active');
+      tab.setAttribute('aria-selected', 'true');
+
+      const category = tab.dataset.tab;
+      let visibleCount = 0;
+      portfolioItems.forEach((item) => {
+        const show = category === 'todos' || item.dataset.category === category;
+        item.hidden = !show;
+        if (show) visibleCount += 1;
+      });
+      if (portfolioEmpty) portfolioEmpty.hidden = visibleCount > 0;
+    });
+  }
+
   // ---------- Contact form ----------
   const form = document.getElementById('contactForm');
   const success = document.getElementById('formSuccess');

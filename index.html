@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SM Publicidad — Agencia creativa + Tecnología con IA</title>
-<meta name="description" content="Diseño, impresión, marketing y desarrollo de software con inteligencia artificial para PYMES que quieren crecer.">
+<meta name="description" content="Diseño, impresión, marketing y desarrollo web potenciado con inteligencia artificial para PYMES que quieren crecer.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
     </a>
     <nav class="nav-desktop">
       <a href="#servicios">Servicios</a>
-      <a href="#ia">IA &amp; Software</a>
+      <a href="#ia">IA y Web</a>
       <a href="#portafolio">Portafolio</a>
       <a href="#proceso">Proceso</a>
       <a href="#contacto" class="btn btn-primary btn-sm">Cotizar proyecto</a>
@@ -34,7 +34,7 @@
   </div>
   <nav id="mobileMenu" class="nav-mobile" hidden>
     <a href="#servicios">Servicios</a>
-    <a href="#ia">IA &amp; Software</a>
+    <a href="#ia">IA y Web</a>
     <a href="#portafolio">Portafolio</a>
     <a href="#proceso">Proceso</a>
     <a href="#contacto" class="btn btn-primary">Cotizar proyecto</a>
@@ -50,7 +50,7 @@
       <span class="badge-dot"></span>Agencia creativa + Tecnología con IA
     </div>
     <h1 data-reveal>Publicidad que <span class="accent">vende</span>. Tecnología que <span class="highlight">trabaja por ti</span>.</h1>
-    <p class="lead" data-reveal>Diseño, impresión, marketing y desarrollo de software para PYMES que quieren crecer. Automatizamos tus procesos con inteligencia artificial para que ganes tiempo, dinero y clientes.</p>
+    <p class="lead" data-reveal>Diseño, impresión, marketing y desarrollo web potenciado con inteligencia artificial para PYMES que quieren crecer. Automatizamos tus procesos con inteligencia artificial para que ganes tiempo, dinero y clientes.</p>
     <div class="hero-actions" data-reveal>
       <a href="#contacto" class="btn btn-primary btn-lg">Cotiza tu proyecto →</a>
       <a href="#portafolio" class="btn btn-outline btn-lg">Ver portafolio</a>
@@ -117,15 +117,15 @@
     <div class="section-head" data-reveal>
       <div class="eyebrow">// Lo que hacemos</div>
       <h2>Una agencia. Todo lo que tu marca necesita.</h2>
-      <p class="section-desc">Desde tu logo hasta el software que hace crecer tu negocio.</p>
+      <p class="section-desc">Desde tu logo hasta la web con IA que hace crecer tu negocio.</p>
     </div>
     <div class="services-grid">
       <div class="service-card service-card-feature" data-reveal>
-        <div class="service-tag">Nuestro enfoque</div>
+        <div class="service-tag">La nueva era de los negocios</div>
         <div class="service-icon">{ }</div>
-        <h3>Desarrollo de Software</h3>
-        <p>Apps, plataformas web y automatizaciones con IA hechas a la medida de tu negocio. El corazón de lo que hacemos.</p>
-        <a href="#contacto" class="service-link">Hablemos de tu software →</a>
+        <h3>Tu web, potenciada por la nueva era de la IA</h3>
+        <p>Mientras tu competencia sigue haciendo todo a mano, tu negocio puede vender, responder y agendar clientes 24/7 con inteligencia artificial. No es el futuro: es la ventaja que hoy pocos están usando.</p>
+        <a href="#contacto" class="service-link">Quiero mi ventaja con IA →</a>
       </div>
       <div class="service-card" data-reveal>
         <div class="service-icon-sm">◎</div>
@@ -164,16 +164,46 @@
         <div class="eyebrow">// Portafolio</div>
         <h2>Trabajo que habla por nosotros.</h2>
       </div>
-      <p class="section-note">Reemplaza cada espacio con tus propias imágenes de proyectos reales.</p>
+      <p class="section-note">Explora por categoría. Reemplaza cada espacio con tus propias imágenes.</p>
     </div>
-    <div class="portfolio-grid">
-      <!-- Sustituye cada .portfolio-slot por <img src="assets/img/portafolio/tu-imagen.jpg" alt="..."> -->
-      <div class="portfolio-item p-large" data-reveal><div class="portfolio-slot">Proyecto destacado</div></div>
-      <div class="portfolio-item p-small" data-reveal><div class="portfolio-slot">Branding</div></div>
-      <div class="portfolio-item p-small" data-reveal><div class="portfolio-slot">Impresión</div></div>
-      <div class="portfolio-item p-medium" data-reveal><div class="portfolio-slot">Software / App</div></div>
-      <div class="portfolio-item p-medium" data-reveal><div class="portfolio-slot">Fotografía</div></div>
+
+    <div class="portfolio-tabs" role="tablist" aria-label="Categorías de portafolio">
+      <button type="button" class="portfolio-tab is-active" role="tab" aria-selected="true" data-tab="todos">Todos</button>
+      <button type="button" class="portfolio-tab" role="tab" aria-selected="false" data-tab="software">Web &amp; IA</button>
+      <button type="button" class="portfolio-tab" role="tab" aria-selected="false" data-tab="branding">Branding</button>
+      <button type="button" class="portfolio-tab" role="tab" aria-selected="false" data-tab="impresion">Impresión</button>
+      <button type="button" class="portfolio-tab" role="tab" aria-selected="false" data-tab="marketing">Marketing &amp; BTL</button>
+      <button type="button" class="portfolio-tab" role="tab" aria-selected="false" data-tab="fotografia">Fotografía</button>
+      <button type="button" class="portfolio-tab" role="tab" aria-selected="false" data-tab="souvenirs">Souvenirs</button>
     </div>
+
+    <!-- Cada .portfolio-item lleva data-category para el filtro de pestañas.
+         Sustituye el .portfolio-slot por <img src="assets/img/portafolio/archivo.jpg" alt="..."> -->
+    <div class="portfolio-grid" role="tabpanel">
+      <div class="portfolio-item" data-category="software" data-reveal><div class="portfolio-slot"><span>Plataforma web</span></div></div>
+      <div class="portfolio-item" data-category="software" data-reveal><div class="portfolio-slot"><span>App a medida</span></div></div>
+      <div class="portfolio-item" data-category="software" data-reveal><div class="portfolio-slot"><span>Automatización IA</span></div></div>
+
+      <div class="portfolio-item" data-category="branding" data-reveal><div class="portfolio-slot"><span>Identidad de marca</span></div></div>
+      <div class="portfolio-item" data-category="branding" data-reveal><div class="portfolio-slot"><span>Logotipo</span></div></div>
+      <div class="portfolio-item" data-category="branding" data-reveal><div class="portfolio-slot"><span>Manual de marca</span></div></div>
+
+      <div class="portfolio-item" data-category="impresion" data-reveal><div class="portfolio-slot"><span>Gran formato</span></div></div>
+      <div class="portfolio-item" data-category="impresion" data-reveal><div class="portfolio-slot"><span>Litografía</span></div></div>
+      <div class="portfolio-item" data-category="impresion" data-reveal><div class="portfolio-slot"><span>Material publicitario</span></div></div>
+
+      <div class="portfolio-item" data-category="marketing" data-reveal><div class="portfolio-slot"><span>Campaña digital</span></div></div>
+      <div class="portfolio-item" data-category="marketing" data-reveal><div class="portfolio-slot"><span>Activación BTL</span></div></div>
+
+      <div class="portfolio-item" data-category="fotografia" data-reveal><div class="portfolio-slot"><span>Fotografía corporativa</span></div></div>
+      <div class="portfolio-item" data-category="fotografia" data-reveal><div class="portfolio-slot"><span>Fotografía urbana</span></div></div>
+      <div class="portfolio-item" data-category="fotografia" data-reveal><div class="portfolio-slot"><span>Producto</span></div></div>
+
+      <div class="portfolio-item" data-category="souvenirs" data-reveal><div class="portfolio-slot"><span>Merch corporativo</span></div></div>
+      <div class="portfolio-item" data-category="souvenirs" data-reveal><div class="portfolio-slot"><span>Regalos promocionales</span></div></div>
+    </div>
+
+    <p class="portfolio-empty" hidden>Aún no hay proyectos en esta categoría.</p>
   </div>
 </section>
 
@@ -193,7 +223,7 @@
       <div class="process-card" data-reveal>
         <div class="process-n">02</div>
         <h3>Estrategia</h3>
-        <p>Definimos la solución: marca, campaña, software o todo integrado.</p>
+        <p>Definimos la solución: marca, campaña, web o todo integrado.</p>
       </div>
       <div class="process-card" data-reveal>
         <div class="process-n">03</div>
@@ -240,7 +270,7 @@
       <input required name="nombre" placeholder="Nombre" autocomplete="name">
       <input required type="email" name="correo" placeholder="Correo electrónico" autocomplete="email">
       <select name="servicio">
-        <option>Desarrollo de software / IA</option>
+        <option>Desarrollo web con IA</option>
         <option>Logos &amp; Branding</option>
         <option>Impresión &amp; Publicidad</option>
         <option>Marketing digital &amp; BTL</option>
@@ -263,7 +293,7 @@
     </div>
     <nav class="footer-nav">
       <a href="#servicios">Servicios</a>
-      <a href="#ia">IA &amp; Software</a>
+      <a href="#ia">IA y Web</a>
       <a href="#portafolio">Portafolio</a>
       <a href="#contacto">Contacto</a>
     </nav>
