@@ -47,6 +47,53 @@
     typeTick();
   }
 
+  // ---------- IA terminal effect ----------
+  const terminalBody = document.getElementById('iaTerminalBody');
+  if (terminalBody) {
+    const lines = [
+      { plain: '> cliente.mensaje("Necesito una cotización")', html: '<span class="t-muted">&gt;</span> cliente.mensaje(<span class="t-str">"Necesito una cotización"</span>)' },
+      { plain: 'IA.clasificar(intencion) -> "cotizacion"', html: '<span class="t-kw">IA</span>.clasificar(intencion) -&gt; <span class="t-str">"cotizacion"</span>' },
+      { plain: 'IA.responder() -> enviada en 2s', html: '<span class="t-kw">IA</span>.responder() -&gt; <span class="t-ok">enviada en 2s</span>' },
+      { plain: 'CRM.actualizar(cliente) -> sincronizado', html: 'CRM.actualizar(cliente) -&gt; <span class="t-ok">sincronizado</span>' },
+      { plain: 'equipo.notificado() -> listo para continuar', html: 'equipo.notificado() -&gt; <span class="t-ok">listo para continuar</span>' },
+    ];
+    let lineIndex = 0;
+    let charIndex = 0;
+    let builtLines = [];
+
+    function renderTerminal(partial) {
+      const finished = builtLines.join('\n');
+      const sep = builtLines.length ? '\n' : '';
+      terminalBody.innerHTML = finished + sep + partial + '<span class="ia-terminal-cursor"></span>';
+    }
+
+    function terminalTick() {
+      if (lineIndex >= lines.length) {
+        setTimeout(() => {
+          builtLines = [];
+          lineIndex = 0;
+          charIndex = 0;
+          terminalBody.innerHTML = '<span class="ia-terminal-cursor"></span>';
+          setTimeout(terminalTick, 400);
+        }, 2600);
+        return;
+      }
+      const line = lines[lineIndex];
+      charIndex += 1;
+      const partial = line.plain.slice(0, charIndex);
+      renderTerminal(partial);
+      if (charIndex >= line.plain.length) {
+        builtLines.push(line.html);
+        lineIndex += 1;
+        charIndex = 0;
+        setTimeout(terminalTick, 420);
+        return;
+      }
+      setTimeout(terminalTick, 22);
+    }
+    terminalTick();
+  }
+
   // ---------- Hero slider ----------
   const heroSlides = document.querySelectorAll('.hero-slide');
   const heroDots = document.querySelectorAll('.hero-dot');
