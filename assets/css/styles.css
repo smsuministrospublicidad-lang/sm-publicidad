@@ -200,23 +200,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
   background: rgba(226, 6, 19, .35); z-index: -1;
 }
 .lead { font-size: clamp(17px, 2vw, 21px); line-height: 1.55; color: var(--text-dim); max-width: 60ch; margin: 28px 0 0; }
-.lead-hl {
-  font-weight: 800;
-  background: linear-gradient(90deg, var(--accent) 0%, #ff9fae 50%, var(--accent) 100%);
-  background-size: 250% auto;
-  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  animation: lead-shine 4s ease-in-out infinite;
-}
-.lead-hl:nth-of-type(1) { animation-delay: 0s; }
-.lead-hl:nth-of-type(2) { animation-delay: .25s; }
-.lead-hl:nth-of-type(3) { animation-delay: .5s; }
-.lead-hl:nth-of-type(4) { animation-delay: .75s; }
-.lead-hl:nth-of-type(5) { animation-delay: 1s; }
-.lead-hl:nth-of-type(6) { animation-delay: 1.25s; }
-@keyframes lead-shine {
-  0% { background-position: 200% center; }
-  50%, 100% { background-position: -50% center; }
-}
+.lead-hl { font-weight: 800; color: inherit; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
 
 .stats { display: flex; flex-wrap: wrap; gap: 36px; margin-top: 56px; padding-top: 36px; border-top: 1px solid rgba(255, 255, 255, .1); }
