@@ -42,7 +42,7 @@
   const heroTitle = document.getElementById('heroTitle');
   if (heroTitle) {
     const segments = [
-      { text: 'Diseño y publicidad, potenciados por ' },
+      { text: 'Diseño y Publicidad, optimizados con ' },
       { text: 'IA', cls: 'accent' },
       { text: '.' },
     ];
