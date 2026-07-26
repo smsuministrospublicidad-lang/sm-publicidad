@@ -22,10 +22,8 @@
   const heroTitle = document.getElementById('heroTitle');
   if (heroTitle) {
     const segments = [
-      { text: 'Diseño, publicidad e ' },
+      { text: 'Diseño y publicidad, potenciados por ' },
       { text: 'IA', cls: 'accent' },
-      { text: ', sin ' },
-      { text: 'dolores de cabeza', cls: 'highlight' },
       { text: '.' },
     ];
     let doneHTML = '';
