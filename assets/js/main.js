@@ -20,10 +20,19 @@
 
   // ---------- Back-to-top button ----------
   const scrollTopBtn = document.getElementById('scrollTopBtn');
+  const progressRing = document.getElementById('scrollProgressRing');
+  const RING_CIRCUMFERENCE = 157.08;
   if (scrollTopBtn) {
-    window.addEventListener('scroll', () => {
+    function updateScrollProgress() {
       scrollTopBtn.classList.toggle('is-visible', window.scrollY > 600);
-    });
+      if (progressRing) {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
+        progressRing.style.strokeDashoffset = String(RING_CIRCUMFERENCE * (1 - progress));
+      }
+    }
+    window.addEventListener('scroll', updateScrollProgress);
+    updateScrollProgress();
     scrollTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
