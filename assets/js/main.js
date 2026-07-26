@@ -70,7 +70,7 @@
   // ---------- WhatsApp AI conversation ----------
   const waChat = document.getElementById('waChat');
   const waStatus = document.getElementById('waStatus');
-  const MAX_BUBBLES = 5;
+  const MAX_BUBBLES = 9;
   if (waChat) {
     const script = [
       { from: 'in', text: 'Hola! Quiero cotizar un logo para mi negocio 🙂' },
@@ -79,6 +79,10 @@
       { from: 'out', text: 'Perfecto, te armo una propuesta hoy mismo. ¿Tu nombre y correo?' },
       { from: 'in', text: 'Andrés, andres@correo.com' },
       { from: 'out', text: 'Listo Andrés ✅ En menos de 24h te enviamos tu propuesta.' },
+      { from: 'in', text: '¿Cuánto tiempo tarda el logo terminado?' },
+      { from: 'out', text: 'Normalmente 2-3 días hábiles ⏱️ ¿Tienes colores o referencias en mente?' },
+      { from: 'in', text: 'Rojo y negro, algo moderno' },
+      { from: 'out', text: 'Anotado 🎨 Nuestro equipo empieza hoy mismo con tu marca.' },
     ];
 
     function nowTime() {
