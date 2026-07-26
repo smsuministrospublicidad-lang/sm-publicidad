@@ -24,8 +24,8 @@
     const segments = [
       { text: 'Diseño, publicidad e ' },
       { text: 'IA', cls: 'accent' },
-      { text: ' que ' },
-      { text: 'trabajan por ti', cls: 'highlight' },
+      { text: ', sin ' },
+      { text: 'dolores de cabeza', cls: 'highlight' },
       { text: '.' },
     ];
     let doneHTML = '';
@@ -33,10 +33,7 @@
     let charIndex = 0;
 
     function typeTick() {
-      if (segIndex >= segments.length) {
-        heroTitle.insertAdjacentHTML('beforeend', '<span class="typing-cursor"></span>');
-        return;
-      }
+      if (segIndex >= segments.length) return;
       const seg = segments[segIndex];
       charIndex++;
       const partial = seg.text.slice(0, charIndex);
@@ -47,7 +44,7 @@
         segIndex += 1;
         charIndex = 0;
       }
-      setTimeout(typeTick, 32);
+      if (segIndex < segments.length) setTimeout(typeTick, 32);
     }
     typeTick();
   }
