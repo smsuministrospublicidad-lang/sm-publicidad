@@ -101,19 +101,18 @@
       </ul>
     </div>
     <div class="ia-panel-wrap" data-reveal>
-      <div class="ia-terminal">
-        <div class="ia-terminal-scan" aria-hidden="true"></div>
-        <div class="ia-panel-head">
-          <div class="dots"><span></span><span></span><span></span></div>
-          <span class="ia-panel-title">ia-engine.sm</span>
+      <div class="ops-panel">
+        <div class="ops-panel-glow" aria-hidden="true"></div>
+        <div class="ops-head">
+          <span class="ops-live-dot"></span>
+          <span class="ops-title">Centro de operaciones · en vivo</span>
         </div>
-        <pre class="ia-terminal-body" id="iaTerminalBody" aria-hidden="true"></pre>
-        <div class="ia-panel-highlight">
-          <div><div class="hl-title">Tiempo ahorrado / mes</div><div class="hl-sub">Automatización activa</div></div>
-          <div class="hl-num">+40h</div>
+        <div class="ops-feed" id="opsFeed" aria-hidden="true"></div>
+        <div class="ops-counter">
+          <div><div class="hl-title">Solicitudes atendidas hoy</div><div class="hl-sub">En todas las categorías</div></div>
+          <div class="hl-num" id="opsCounter">0</div>
         </div>
       </div>
-      <div class="ia-terminal-glow" aria-hidden="true"></div>
       <div class="floating-badge">Powered by IA</div>
     </div>
   </div>

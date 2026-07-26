@@ -47,51 +47,61 @@
     typeTick();
   }
 
-  // ---------- IA terminal effect ----------
-  const terminalBody = document.getElementById('iaTerminalBody');
-  if (terminalBody) {
-    const lines = [
-      { plain: '> cliente.mensaje("Necesito una cotización")', html: '<span class="t-muted">&gt;</span> cliente.mensaje(<span class="t-str">"Necesito una cotización"</span>)' },
-      { plain: 'IA.clasificar(intencion) -> "cotizacion"', html: '<span class="t-kw">IA</span>.clasificar(intencion) -&gt; <span class="t-str">"cotizacion"</span>' },
-      { plain: 'IA.responder() -> enviada en 2s', html: '<span class="t-kw">IA</span>.responder() -&gt; <span class="t-ok">enviada en 2s</span>' },
-      { plain: 'CRM.actualizar(cliente) -> sincronizado', html: 'CRM.actualizar(cliente) -&gt; <span class="t-ok">sincronizado</span>' },
-      { plain: 'equipo.notificado() -> listo para continuar', html: 'equipo.notificado() -&gt; <span class="t-ok">listo para continuar</span>' },
+  // ---------- Live operations feed ----------
+  const opsFeed = document.getElementById('opsFeed');
+  const opsCounterEl = document.getElementById('opsCounter');
+  if (opsFeed && opsCounterEl) {
+    const requests = [
+      { cat: 'Branding', icon: '◎', text: 'Nuevo logo para restaurante' },
+      { cat: 'Impresión', icon: '▤', text: 'Cotización de tarjetas' },
+      { cat: 'Marketing', icon: '◈', text: 'Campaña para redes sociales' },
+      { cat: 'Fotografía', icon: '◐', text: 'Sesión de fotos de producto' },
+      { cat: 'Web & IA', icon: '{ }', text: 'Chatbot para atención 24/7' },
+      { cat: 'Souvenirs', icon: '★', text: 'Merch para lanzamiento' },
+      { cat: 'Impresión', icon: '▤', text: 'Vallas para punto de venta' },
+      { cat: 'Marketing', icon: '◈', text: 'Anuncios en Google Ads' },
     ];
-    let lineIndex = 0;
-    let charIndex = 0;
-    let builtLines = [];
+    const MAX_CARDS = 3;
+    let reqIndex = 0;
+    let counter = 128;
+    opsCounterEl.textContent = counter;
 
-    function renderTerminal(partial) {
-      const finished = builtLines.join('\n');
-      const sep = builtLines.length ? '\n' : '';
-      terminalBody.innerHTML = finished + sep + partial + '<span class="ia-terminal-cursor"></span>';
+    function addCard() {
+      const req = requests[reqIndex % requests.length];
+      reqIndex += 1;
+
+      const card = document.createElement('div');
+      card.className = 'ops-card';
+      card.innerHTML =
+        '<div class="ops-card-icon">' + req.icon + '</div>' +
+        '<div class="ops-card-body">' +
+          '<div class="ops-card-cat">' + req.cat + '</div>' +
+          '<div class="ops-card-text">' + req.text + '</div>' +
+        '</div>' +
+        '<div class="ops-card-status">Procesando…</div>';
+      opsFeed.appendChild(card);
+
+      requestAnimationFrame(() => card.classList.add('is-visible'));
+
+      if (opsFeed.children.length > MAX_CARDS) {
+        const oldest = opsFeed.children[0];
+        oldest.classList.add('is-leaving');
+        setTimeout(() => oldest.remove(), 450);
+      }
+
+      setTimeout(() => {
+        const status = card.querySelector('.ops-card-status');
+        if (status) {
+          status.textContent = '✓ Resuelto por IA';
+          status.classList.add('is-done');
+        }
+        counter += 1;
+        opsCounterEl.textContent = counter;
+      }, 1000);
     }
 
-    function terminalTick() {
-      if (lineIndex >= lines.length) {
-        setTimeout(() => {
-          builtLines = [];
-          lineIndex = 0;
-          charIndex = 0;
-          terminalBody.innerHTML = '<span class="ia-terminal-cursor"></span>';
-          setTimeout(terminalTick, 400);
-        }, 2600);
-        return;
-      }
-      const line = lines[lineIndex];
-      charIndex += 1;
-      const partial = line.plain.slice(0, charIndex);
-      renderTerminal(partial);
-      if (charIndex >= line.plain.length) {
-        builtLines.push(line.html);
-        lineIndex += 1;
-        charIndex = 0;
-        setTimeout(terminalTick, 420);
-        return;
-      }
-      setTimeout(terminalTick, 22);
-    }
-    terminalTick();
+    addCard();
+    setInterval(addCard, 2200);
   }
 
   // ---------- Hero slider ----------
