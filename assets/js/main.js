@@ -85,16 +85,36 @@
   // ---------- Contact form ----------
   const form = document.getElementById('contactForm');
   const success = document.getElementById('formSuccess');
+  const formError = document.getElementById('formError');
+  const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
-      // TODO: connect to a real backend (e.g. assets/php/enviar.php) to send the lead.
-      success.hidden = false;
-      form.reset();
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      success.hidden = true;
+      if (formError) formError.hidden = true;
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando…'; }
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error('request failed');
+        success.hidden = false;
+        form.reset();
+      } catch (err) {
+        if (formError) formError.hidden = false;
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Enviar solicitud →'; }
+      }
     });
   }
 

@@ -1,0 +1,9 @@
+{
+  "name": "sm-publicidad",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Landing page de SM Publicidad",
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
+}
