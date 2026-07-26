@@ -18,6 +18,17 @@
 
   mobileMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
 
+  // ---------- Back-to-top button ----------
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('is-visible', window.scrollY > 600);
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   // ---------- Hero title typewriter ----------
   const heroTitle = document.getElementById('heroTitle');
   if (heroTitle) {
