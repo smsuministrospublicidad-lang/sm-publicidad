@@ -43,8 +43,13 @@
 
 <!-- ============ HERO ============ -->
 <section id="top" class="hero">
-  <div class="hero-grid-bg" aria-hidden="true"></div>
-  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-slider" aria-hidden="true">
+    <div class="hero-slide is-active" style="background-image:url('assets/img/hero/bg-ia.svg')"></div>
+    <div class="hero-slide" style="background-image:url('assets/img/hero/bg-branding.svg')"></div>
+    <div class="hero-slide" style="background-image:url('assets/img/hero/bg-impresion.svg')"></div>
+    <div class="hero-slide" style="background-image:url('assets/img/hero/bg-marketing.svg')"></div>
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <div class="container hero-content">
     <div class="badge" data-reveal>
       <span class="badge-dot"></span>Agencia creativa + Tecnología con IA
@@ -60,6 +65,12 @@
       <div class="stat"><div class="stat-num">+250</div><div class="stat-label">Proyectos entregados</div></div>
       <div class="stat"><div class="stat-num">+120</div><div class="stat-label">Marcas acompañadas</div></div>
       <div class="stat"><div class="stat-num accent">IA</div><div class="stat-label">En cada proceso</div></div>
+    </div>
+    <div class="hero-dots" role="tablist" aria-label="Fondos del hero">
+      <button type="button" class="hero-dot is-active" role="tab" aria-selected="true" data-slide="0" aria-label="Fondo 1"></button>
+      <button type="button" class="hero-dot" role="tab" aria-selected="false" data-slide="1" aria-label="Fondo 2"></button>
+      <button type="button" class="hero-dot" role="tab" aria-selected="false" data-slide="2" aria-label="Fondo 3"></button>
+      <button type="button" class="hero-dot" role="tab" aria-selected="false" data-slide="3" aria-label="Fondo 4"></button>
     </div>
   </div>
   <div class="marquee-wrap">

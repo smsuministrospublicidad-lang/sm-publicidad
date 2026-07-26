@@ -18,6 +18,47 @@
 
   mobileMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
 
+  // ---------- Hero slider ----------
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  const heroDots = document.querySelectorAll('.hero-dot');
+  if (heroSlides.length) {
+    let current = 0;
+    let timer = null;
+
+    function goToSlide(index) {
+      heroSlides[current].classList.remove('is-active');
+      heroDots[current].classList.remove('is-active');
+      heroDots[current].setAttribute('aria-selected', 'false');
+      current = index;
+      heroSlides[current].classList.add('is-active');
+      heroDots[current].classList.add('is-active');
+      heroDots[current].setAttribute('aria-selected', 'true');
+    }
+
+    function nextSlide() {
+      goToSlide((current + 1) % heroSlides.length);
+    }
+
+    function startAutoplay() {
+      timer = setInterval(nextSlide, 6000);
+    }
+
+    function resetAutoplay() {
+      clearInterval(timer);
+      startAutoplay();
+    }
+
+    heroDots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        if (i === current) return;
+        goToSlide(i);
+        resetAutoplay();
+      });
+    });
+
+    startAutoplay();
+  }
+
   // ---------- Scroll reveal ----------
   const revealTargets = document.querySelectorAll('[data-reveal]');
   const io = new IntersectionObserver((entries) => {
