@@ -18,6 +18,40 @@
 
   mobileMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
 
+  // ---------- Hero title typewriter ----------
+  const heroTitle = document.getElementById('heroTitle');
+  if (heroTitle) {
+    const segments = [
+      { text: 'Diseño, publicidad e ' },
+      { text: 'IA', cls: 'accent' },
+      { text: ' que ' },
+      { text: 'trabajan por ti', cls: 'highlight' },
+      { text: '.' },
+    ];
+    let doneHTML = '';
+    let segIndex = 0;
+    let charIndex = 0;
+
+    function typeTick() {
+      if (segIndex >= segments.length) {
+        heroTitle.insertAdjacentHTML('beforeend', '<span class="typing-cursor"></span>');
+        return;
+      }
+      const seg = segments[segIndex];
+      charIndex++;
+      const partial = seg.text.slice(0, charIndex);
+      const partialHTML = seg.cls ? `<span class="${seg.cls}">${partial}</span>` : partial;
+      heroTitle.innerHTML = doneHTML + partialHTML + '<span class="typing-cursor"></span>';
+      if (charIndex >= seg.text.length) {
+        doneHTML += seg.cls ? `<span class="${seg.cls}">${seg.text}</span>` : seg.text;
+        segIndex += 1;
+        charIndex = 0;
+      }
+      setTimeout(typeTick, 32);
+    }
+    typeTick();
+  }
+
   // ---------- Hero slider ----------
   const heroSlides = document.querySelectorAll('.hero-slide');
   const heroDots = document.querySelectorAll('.hero-dot');
