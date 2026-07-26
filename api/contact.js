@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const { nombre, correo, servicio, mensaje } = req.body || {};
+  const { nombre, correo, whatsapp, servicio, mensaje } = req.body || {};
 
   if (!nombre || typeof nombre !== 'string' || !correo || typeof correo !== 'string') {
     res.status(400).json({ error: 'Nombre y correo son requeridos.' });
@@ -37,6 +37,7 @@ module.exports = async (req, res) => {
   const safeServicio = SERVICE_OPTIONS.has(servicio) ? servicio : 'Desarrollo web con IA';
   const safeMensaje = typeof mensaje === 'string' ? mensaje.slice(0, 4000) : '';
   const safeNombre = nombre.slice(0, 200);
+  const safeWhatsapp = typeof whatsapp === 'string' ? whatsapp.slice(0, 40).trim() : '';
 
   const transporter = nodemailer.createTransport({
     host: 'smtppro.zoho.com',
@@ -69,11 +70,12 @@ module.exports = async (req, res) => {
       to: process.env.ZOHO_USER,
       replyTo: correo,
       subject: `Nuevo contacto web — ${safeNombre} (${safeServicio})`,
-      text: `Nombre: ${safeNombre}\nCorreo: ${correo}\nServicio: ${safeServicio}\n\nMensaje:\n${safeMensaje || '(sin mensaje)'}`,
+      text: `Nombre: ${safeNombre}\nCorreo: ${correo}\nWhatsApp: ${safeWhatsapp || '(no indicado)'}\nServicio: ${safeServicio}\n\nMensaje:\n${safeMensaje || '(sin mensaje)'}`,
       html: wrap(`
         <h2 style="margin:0 0 16px;font-size:18px;color:#111">Nueva solicitud de cotización</h2>
         <p style="margin:0 0 10px"><strong>Nombre:</strong> ${escapeHtml(safeNombre)}</p>
         <p style="margin:0 0 10px"><strong>Correo:</strong> ${escapeHtml(correo)}</p>
+        <p style="margin:0 0 10px"><strong>WhatsApp:</strong> ${safeWhatsapp ? escapeHtml(safeWhatsapp) : '(no indicado)'}</p>
         <p style="margin:0 0 10px"><strong>Servicio:</strong> ${escapeHtml(safeServicio)}</p>
         <p style="margin:16px 0 6px"><strong>Mensaje:</strong></p>
         <p style="margin:0;white-space:pre-wrap">${escapeHtml(safeMensaje || '(sin mensaje)')}</p>
@@ -84,11 +86,11 @@ module.exports = async (req, res) => {
       from: fromAddress,
       to: correo,
       subject: `Recibimos tu mensaje, ${safeNombre} — SM Publicidad`,
-      text: `Hola ${safeNombre},\n\nGracias por escribirnos. Ya recibimos tu solicitud sobre "${safeServicio}" y te contactaremos en menos de 24 horas con una propuesta.\n\nSi necesitas algo urgente, escríbenos por WhatsApp al +57 300 555 1234.\n\n— Equipo SM Publicidad\nhttps://www.smpublicidad.com.co`,
+      text: `Hola ${safeNombre},\n\nGracias por escribirnos. Ya recibimos tu solicitud sobre "${safeServicio}" y te contactaremos en menos de 24 horas con una propuesta.\n\nSi necesitas algo urgente, escríbenos por WhatsApp al +57 312 680 3556.\n\n— Equipo SM Publicidad\nhttps://www.smpublicidad.com.co`,
       html: wrap(`
         <p style="margin:0 0 14px">Hola ${escapeHtml(safeNombre)},</p>
         <p style="margin:0 0 14px">Gracias por escribirnos. Ya recibimos tu solicitud sobre <strong>${escapeHtml(safeServicio)}</strong> y te contactaremos en <strong>menos de 24 horas</strong> con una propuesta.</p>
-        <p style="margin:0 0 14px">Si necesitas algo urgente, escríbenos por WhatsApp al <strong>+57 300 555 1234</strong>.</p>
+        <p style="margin:0 0 14px">Si necesitas algo urgente, escríbenos por WhatsApp al <strong>+57 312 680 3556</strong>.</p>
         <p style="margin:0;color:#555">— Equipo SM Publicidad</p>
       `),
     });
