@@ -179,10 +179,10 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
 
 .hero h1 {
   font-weight: 700;
-  font-size: clamp(42px, 7vw, 88px);
+  font-size: clamp(38px, 5.4vw, 88px);
   line-height: .98;
   margin: 26px 0 0;
-  max-width: 16ch;
+  max-width: 34ch;
 }
 .typing-cursor {
   display: inline-block;

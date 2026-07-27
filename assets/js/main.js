@@ -42,7 +42,9 @@
   const heroTitle = document.getElementById('heroTitle');
   if (heroTitle) {
     const segments = [
-      { text: 'Diseño y Publicidad, optimizados con ' },
+      { text: 'Diseño y Publicidad,' },
+      { br: true },
+      { text: 'optimizados con ' },
       { text: 'IA', cls: 'accent' },
       { text: '.' },
     ];
@@ -53,6 +55,13 @@
     function typeTick() {
       if (segIndex >= segments.length) return;
       const seg = segments[segIndex];
+      if (seg.br) {
+        doneHTML += '<br>';
+        segIndex += 1;
+        charIndex = 0;
+        setTimeout(typeTick, 32);
+        return;
+      }
       charIndex++;
       const partial = seg.text.slice(0, charIndex);
       const partialHTML = seg.cls ? `<span class="${seg.cls}">${partial}</span>` : partial;
