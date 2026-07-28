@@ -360,7 +360,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
   transition: transform .3s ease, border-color .3s ease;
 }
 .service-card:hover { transform: translateY(-6px); border-color: rgba(226, 6, 19, .5); }
-.service-icon-sm { width: 34px; height: 34px; object-fit: contain; margin-top: auto; margin-bottom: 16px; }
+.service-icon-sm { width: 54px; height: 54px; object-fit: contain; margin-top: auto; margin-bottom: 16px; }
 .service-card h3 { font-weight: 700; font-size: 20px; color: #fff; line-height: 1.1; }
 .service-card p { font-size: 14.5px; line-height: 1.5; color: #9a9a9a; margin-top: 12px; }
 
