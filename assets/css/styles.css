@@ -380,7 +380,6 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
 .service-card-feature p { font-size: 16.5px; line-height: 1.5; color: rgba(255, 255, 255, .9); }
 .service-link { margin-top: auto; padding-top: 26px; color: #fff; font-weight: 700; font-size: 15px; }
 .service-link:hover { color: #fff; text-decoration: underline; }
-
 /* ==========================================================================
    PORTAFOLIO
    ========================================================================== */
@@ -459,11 +458,6 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
 /* ==========================================================================
    CTA / CONTACTO
    ========================================================================== */
-.eyebrowcontact {
-  display: inline-flex; align-items: center; gap: 8px;
-  color: black; font-weight: 800; font-size: 13px;
-  letter-spacing: .08em; text-transform: uppercase;
-}
 .section-cta { position: relative; overflow: hidden; background: var(--accent); color: #fff; padding: 96px 0; }
 .cta-grid-bg {
   background-image:
