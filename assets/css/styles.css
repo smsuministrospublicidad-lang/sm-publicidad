@@ -581,6 +581,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
   .fab { width: 48px; height: 48px; bottom: 16px; }
   .fab-whatsapp { right: 16px; }
   .fab-top { left: 16px; }
+  .hero-slide { background-position: 85% center !important; }
 }
 
 /* ==========================================================================
