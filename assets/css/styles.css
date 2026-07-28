@@ -375,7 +375,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
   font-weight: 700; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase;
   padding: 6px 12px; border-radius: 999px; margin-bottom: auto;
 }
-.service-icon { width: 46px; height: 46px; object-fit: contain; margin-bottom: 16px; }
+.service-icon { width:66px; height:66px; object-fit:contain; display:block; margin:0 auto 16px; }
 .service-card-feature h3 { font-size: clamp(26px, 3vw, 36px); color: #fff; line-height: 1.05; }
 .service-card-feature p { font-size: 16.5px; line-height: 1.5; color: rgba(255, 255, 255, .9); }
 .service-link { margin-top: auto; padding-top: 26px; color: #fff; font-weight: 700; font-size: 15px; }
@@ -452,7 +452,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
    ========================================================================== */
 .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 48px; }
 .process-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 26px; }
-.process-n { font-family: var(--font-display); font-weight: 700; font-size: 40px; color: rgba(226, 6, 19, .9); line-height: 1; }
+.process-n { font-family: var(--font-body); font-weight: 700; font-size: 40px; color: rgba(226, 6, 19, .9); line-height: 1; }
 .process-card h3 { font-size: 19px; color: #fff; margin: 14px 0 8px; letter-spacing: -.01em; }
 .process-card p { font-size: 14.5px; line-height: 1.5; color: #9a9a9a; }
 
@@ -581,13 +581,8 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
   .fab { width: 48px; height: 48px; bottom: 16px; }
   .fab-whatsapp { right: 16px; }
   .fab-top { left: 16px; }
-  .hero-slide { background-position: 88% center !important; background-size: cover !important; }
-  .hero-overlay {
-    background:
-      linear-gradient(180deg, rgba(14, 14, 14, .45) 0%, rgba(14, 14, 14, .55) 45%, rgba(14, 14, 14, .92) 100%) !important;
-  }
-  .hero h1 { font-size: 32px; max-width: 100%; text-shadow: 0 2px 10px rgba(0, 0, 0, .6); }
-  .hero .lead, .badge { text-shadow: 0 1px 6px rgba(0, 0, 0, .5); }
+  .hero-slide { background-position: 85% center !important; }
+  .hero h1 { font-size: 32px; max-width: 100%; }
 }
 
 /* ==========================================================================
