@@ -88,7 +88,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(14, 14, 14, .82);
+  background: rgb(255, 255, 255);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
@@ -100,12 +100,12 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
   gap: 24px;
 }
 .brand { display: flex; align-items: center; gap: 12px; color: #fff; }
-.brand-logo { width: 46px; height: 46px; border-radius: 10px; object-fit: cover; background: #fff; padding: 3px; }
+.brand-logo { width: 46px; height: 46px; border-radius: 10px; object-fit: cover; padding: 3px; }
 .header-row .brand-logo { width: 54px; height: 54px; }
 
 .nav-desktop { display: flex; align-items: center; gap: 30px; }
-.nav-desktop a:not(.btn) { color: #C9C9C9; font-weight: 600; font-size: 14.5px; }
-.nav-desktop a:not(.btn):hover { color: #fff; }
+.nav-desktop a:not(.btn) { color: #000000; font-weight: 600; font-size: 14.5px; }
+.nav-desktop a:not(.btn):hover { color: #000000; }
 
 .burger {
   display: none;
