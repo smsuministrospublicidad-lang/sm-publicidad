@@ -249,6 +249,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
 .section-callout {
   background: var(--accent); color: #fff; font-size: 15px; font-weight: 600; line-height: 1.45;
   margin: 16px 0 0; padding: 14px 18px; border-radius: 12px; max-width: 52ch;
+  text-align: justify;
 }
 
 .grid-2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center; }
@@ -263,7 +264,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
   font-weight: 800; font-size: 14px; margin-top: 2px;
 }
 .check-title { font-weight: 700; font-size: 16.5px; color: var(--light-text); }
-.check-desc { font-size: 14.5px; color: #6a6a6a; margin-top: 2px; line-height: 1.45; }
+.check-desc { font-size: 14.5px; color: #6a6a6a; margin-top: 2px; line-height: 1.45; text-align: justify; }
 
 .ia-panel-wrap { position: relative; }
 
