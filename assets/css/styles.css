@@ -374,11 +374,11 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -.02em; }
 .service-card-feature:hover { transform: translateY(-6px); }
 .service-card-feature-bg {
   position: absolute; inset: 0; z-index: 0;
-  background-size: cover; background-position: center;
+  background-size: 80%; background-position: center; background-repeat: no-repeat;
 }
 .service-card-feature-bg::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, .93) 0%, rgba(45, 2, 4, .82) 40%, rgba(140, 4, 10, .72) 72%, rgba(226, 6, 19, .68) 100%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, .96) 0%, rgba(8, 1, 1, .93) 45%, rgba(55, 2, 4, .88) 72%, rgba(140, 4, 8, .8) 100%);
 }
 .service-card-feature > *:not(.service-card-feature-bg) { position: relative; z-index: 1; }
 .service-tag {
